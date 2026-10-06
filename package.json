@@ -1,0 +1,72 @@
+{
+  "name": "zearn-hint-overlay",
+  "displayName": "Zearn Hint Overlay",
+  "description": "A compact VS Code overlay that reveals five timed hints before revealing the answer.",
+  "version": "1.0.0",
+  "publisher": "local",
+  "engines": {
+    "vscode": "^1.95.0"
+  },
+  "main": "./out/extension.js",
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:zearn.openOverlay"
+  ],
+  "commands": [
+    {
+      "command": "zearn.openOverlay",
+      "title": "Zearn: Open Hint Overlay"
+    },
+    {
+      "command": "zearn.restartSequence",
+      "title": "Zearn: Restart Hint Sequence"
+    }
+  ],
+  "configuration": {
+    "title": "Zearn",
+    "properties": {
+      "zearn.hints": {
+        "type": "array",
+        "description": "The five hints to display, in order.",
+        "items": {
+          "type": "string"
+        },
+        "default": [
+          "Start by identifying the key data or state involved.",
+          "Trace the flow from input to output.",
+          "Inspect the smallest useful part of the implementation.",
+          "Compare the behavior with a working example.",
+          "Consider the final condition and how it is reached."
+        ]
+      },
+      "zearn.answer": {
+        "type": "string",
+        "description": "The answer shown after all five hints and the two-minute cooldown.",
+        "default": "The answer is configured in the Zearn extension settings."
+      },
+      "zearn.hintCooldownMs": {
+        "type": "number",
+        "default": 30000,
+        "minimum": 1000
+      },
+      "zearn.answerCooldownMs": {
+        "type": "number",
+        "default": 120000,
+        "minimum": 1000
+      }
+    }
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run compile",
+    "compile": "tsc -p ./",
+    "watch": "tsc -watch -p ./",
+    "test": "npm run compile && node --test out/test/*.test.js",
+    "package": "vsce package"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "@types/vscode": "^1.140.0",
+    "typescript": "^7.0.2",
+    "vsce": "^2.15.0"
+  }
+}

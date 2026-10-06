@@ -1,0 +1,19 @@
+{
+  "manifest_version": 3,
+  "name": "Zearn Hint Overlay",
+  "version": "1.0.0",
+  "description": "A compact timed hint overlay that reveals five hints and then an answer.",
+  "permissions": ["storage"],
+  "host_permissions": ["<all_urls>"],
+  "action": {
+    "default_title": "Zearn Hint Overlay",
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "css": ["content.css"],
+      "js": ["scheduler.js", "content.js"]
+    }
+  ]
+}
